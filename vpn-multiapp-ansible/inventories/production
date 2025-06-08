@@ -1,4 +1,4 @@
 [production]
-vpn_server ansible_host=192.168.1.10
-app_gudliving ansible_host=192.168.1.20
-app_ledger ansible_host=192.168.1.30
+vpn_server ansible_host=157.173.220.220
+app_gudliving ansible_host=157.173.220.220
+app_ledger ansible_host=157.173.220.220

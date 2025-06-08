@@ -67,3 +67,6 @@ vpn-multiapp-ansible
 ## Contributing
 
 Feel free to submit issues or pull requests to improve this project. Contributions are welcome!
+
+cd d:\Projects\app-setup-v3\vpn-multiapp-ansible
+ansible-playbook -i inventories/production playbooks/main.yml
