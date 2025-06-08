@@ -72,3 +72,14 @@ cd d:\Projects\app-setup-v3\vpn-multiapp-ansible
 ansible-playbook -i inventories/production playbooks/main.yml
 ansible-playbook -i inventories/production playbooks/main.yml -u your_ssh_user
 ansible-playbook -i inventories/production playbooks/main.yml -u your_ssh_user --private-key=path\to\your\key.pem
+
+
+ssh -i /home/key.pem your_user@157.173.220.220
+
+
+
+ssh-keygen -t rsa -b 4096 -f /home/key.pem
+
+chmod 600 /home/key.pem
+
+ssh-copy-id -i /home/key.pem.pub root@your_server_ip
