@@ -3,7 +3,7 @@
   become: true
   roles:
     - common
-    - vpn
+    # - vpn
     - wordpress
     - docker_app
 

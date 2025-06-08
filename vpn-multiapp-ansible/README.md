@@ -70,3 +70,5 @@ Feel free to submit issues or pull requests to improve this project. Contributio
 
 cd d:\Projects\app-setup-v3\vpn-multiapp-ansible
 ansible-playbook -i inventories/production playbooks/main.yml
+ansible-playbook -i inventories/production playbooks/main.yml -u your_ssh_user
+ansible-playbook -i inventories/production playbooks/main.yml -u your_ssh_user --private-key=path\to\your\key.pem
