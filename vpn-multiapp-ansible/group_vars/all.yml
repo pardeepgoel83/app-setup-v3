@@ -1,0 +1,11 @@
+---
+# Global variables for all hosts in the inventory
+wordpress_version: "5.8"
+docker_app_version: "latest"
+vpn_user: "vpnuser"
+vpn_password: "securepassword"
+db_name: "wordpress_db"
+db_user: "wp_user"
+db_password: "wp_password"
+docker_image_fastapi: "my_fastapi_app"
+docker_image_react: "my_react_app"

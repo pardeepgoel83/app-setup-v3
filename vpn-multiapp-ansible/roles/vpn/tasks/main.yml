@@ -1,0 +1,204 @@
+- name: Install VPN software
+  apt:
+    name: openvpn
+    state: latest
+    update_cache: true
+
+- name: Configure VPN server
+  template:
+    src: vpn-server.conf.j2
+    dest: /etc/openvpn/server.conf
+  notify: Restart OpenVPN
+
+- name: Enable IP forwarding
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^#?net.ipv4.ip_forward'
+    line: 'net.ipv4.ip_forward=1'
+  notify: Apply sysctl changes
+
+- name: Start and enable OpenVPN service
+  systemd:
+    name: openvpn@server
+    state: started
+    enabled: true
+
+- name: Create VPN user
+  user:
+    name: vpnuser
+    state: present
+    shell: /bin/false
+
+- name: Generate client configuration
+  template:
+    src: client.ovpn.j2
+    dest: /etc/openvpn/client.ovpn
+  vars:
+    client_name: "{{ created_username }}"
+
+- name: Restart OpenVPN
+  systemd:
+    name: openvpn@server
+    state: restarted
+
+- name: Apply sysctl changes
+  command: sysctl -p
+
+- name: Ensure OpenVPN is installed
+  apt:
+    name: openvpn
+    state: present
+
+- name: Copy OpenVPN configuration files
+  copy:
+    src: files/
+    dest: /etc/openvpn/
+    owner: root
+    group: root
+    mode: '0600'
+  notify: Restart OpenVPN
+
+- name: Start OpenVPN service
+  systemd:
+    name: openvpn@server
+    state: started
+    enabled: true
+
+- name: Create client certificate
+  command: easyrsa build-client-full {{ client_name }} nopass
+  args:
+    chdir: /etc/openvpn/easy-rsa/
+
+- name: Generate client configuration file
+  template:
+    src: client.ovpn.j2
+    dest: "/etc/openvpn/{{ client_name }}.ovpn"
+  vars:
+    client_name: "{{ created_username }}"
+    remote_ip: "{{ ansible_default_ipv4.address }}"
+    remote_port: 1194
+    ca_cert: "/etc/openvpn/ca.crt"
+    cert: "/etc/openvpn/{{ client_name }}.crt"
+    key: "/etc/openvpn/{{ client_name }}.key"
+
+- name: Copy client configuration to remote server
+  copy:
+    src: "/etc/openvpn/{{ client_name }}.ovpn"
+    dest: "/home/{{ ansible_ssh_user }}/"
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    mode: '0644'
+
+- name: Print client configuration file location
+  debug:
+    msg: "Client configuration file is located at /home/{{ ansible_ssh_user }}/{{ client_name }}.ovpn"
+
+- name: Restart OpenVPN service
+  systemd:
+    name: openvpn@server
+    state: restarted
+
+- name: Apply sysctl changes
+  command: sysctl -p
+
+- name: Install OpenVPN
+  apt:
+    name: openvpn
+    state: latest
+    update_cache: true
+
+- name: Configure OpenVPN
+  template:
+    src: server.conf.j2
+    dest: /etc/openvpn/server.conf
+  notify: Restart OpenVPN
+
+- name: Enable IP forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+    reload: yes
+
+- name: Start and enable OpenVPN service
+  systemd:
+    name: openvpn@server
+    state: started
+    enabled: true
+
+- name: Create VPN user
+  user:
+    name: vpnuser
+    state: present
+    shell: /bin/false
+
+- name: Generate client configuration
+  template:
+    src: client.ovpn.j2
+    dest: "/etc/openvpn/{{ created_username }}.ovpn"
+  vars:
+    client_name: "{{ created_username }}"
+    remote_ip: "{{ ansible_default_ipv4.address }}"
+    remote_port: 1194
+    ca_cert: "/etc/openvpn/ca.crt"
+    cert: "/etc/openvpn/{{ created_username }}.crt"
+    key: "/etc/openvpn/{{ created_username }}.key"
+
+- name: Restart OpenVPN
+  systemd:
+    name: openvpn@server
+    state: restarted
+
+- name: Apply sysctl changes
+  command: sysctl -p
+
+- name: Install OpenVPN
+  apt:
+    name: openvpn
+    state: latest
+    update_cache: true
+
+- name: Configure OpenVPN
+  template:
+    src: server.conf.j2
+    dest: /etc/openvpn/server.conf
+  notify: Restart OpenVPN
+
+- name: Enable IP forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+    reload: yes
+
+- name: Start and enable OpenVPN service
+  systemd:
+    name: openvpn@server
+    state: started
+    enabled: true
+
+- name: Create VPN user
+  user:
+    name: vpnuser
+    state: present
+    shell: /bin/false
+
+- name: Generate client configuration
+  template:
+    src: client.ovpn.j2
+    dest: "/etc/openvpn/{{ created_username }}.ovpn"
+  vars:
+    client_name: "{{ created_username }}"
+    remote_ip: "{{ ansible_default_ipv4.address }}"
+    remote_port: 1194
+    ca_cert: "/etc/openvpn/ca.crt"
+    cert: "/etc/openvpn/{{ created_username }}.crt"
+    key: "/etc/openvpn/{{ created_username }}.key"
+
+- name: Restart OpenVPN
+  systemd:
+    name: openvpn@server
+    state: restarted
+
+- name: Apply sysctl changes
+  command: sysctl -p

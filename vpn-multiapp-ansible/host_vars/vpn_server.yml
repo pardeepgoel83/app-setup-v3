@@ -1,0 +1,10 @@
+created_username: vpn_user
+vpn_ip: 192.168.1.10
+vpn_subnet: 192.168.1.0/24
+vpn_port: 1194
+wordpress_db_name: gudliving_db
+wordpress_db_user: gudliving_user
+wordpress_db_password: secure_password
+docker_app_image: ledger_app_image
+docker_app_container_name: ledger_app_container
+docker_app_port: 8080

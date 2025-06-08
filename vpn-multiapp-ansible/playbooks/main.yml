@@ -1,0 +1,28 @@
+---
+- hosts: vpn_server
+  become: true
+  roles:
+    - common
+    - vpn
+    - wordpress
+    - docker_app
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Ensure all packages are up to date
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Include WordPress playbook
+      include_tasks: wordpress.yml
+
+    - name: Include Docker application playbook
+      include_tasks: docker_app.yml
+
+- hosts: webservers
+  become: true
+  roles:
+    - wordpress
+    - ledger

@@ -1,0 +1,16 @@
+created_username: pgoel
+docker_app:
+  fastapi:
+    image_name: "my_fastapi_app"
+    container_name: "fastapi_container"
+    port: 8000
+    environment:
+      - ENV=production
+      - DATABASE_URL="postgres://user:password@db:5432/mydatabase"
+  react:
+    image_name: "my_react_app"
+    container_name: "react_container"
+    port: 3000
+    environment:
+      - NODE_ENV=production
+      - API_URL="http://localhost:8000"

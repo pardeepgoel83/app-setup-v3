@@ -1,0 +1,41 @@
+- name: Ensure Docker is installed
+  apt:
+    name: docker.io
+    state: present
+    update_cache: true
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Build Docker image for FastAPI
+  docker_image:
+    name: fastapi_app
+    path: ../path_to_fastapi_dockerfile
+    state: present
+
+- name: Run FastAPI container
+  docker_container:
+    name: fastapi_container
+    image: fastapi_app
+    state: started
+    restart_policy: always
+    published_ports:
+      - "8000:8000"
+
+- name: Build Docker image for React.js
+  docker_image:
+    name: react_app
+    path: ../path_to_react_dockerfile
+    state: present
+
+- name: Run React.js container
+  docker_container:
+    name: react_container
+    image: react_app
+    state: started
+    restart_policy: always
+    published_ports:
+      - "3000:3000"

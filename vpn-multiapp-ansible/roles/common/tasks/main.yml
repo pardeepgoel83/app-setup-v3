@@ -1,0 +1,30 @@
+- name: Update package manager and install essential utilities
+  apt:
+    update_cache: yes
+    name:
+      - curl
+      - vim
+      - git
+      - unzip
+    state: latest
+
+- name: Ensure Python is installed
+  apt:
+    name: python3
+    state: present
+
+- name: Install pip for Python 3
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install Ansible
+  pip:
+    name: ansible
+    state: latest
+
+- name: Clean up unused packages
+  apt:
+    autoremove: yes
+    purge: yes
+    state: present

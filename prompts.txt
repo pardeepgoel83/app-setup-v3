@@ -1,0 +1,18 @@
+Write ansible notebook to host multiple application on the VPN server
+As a start you need to setup the code for 2 applications
+First Application would the wordpress setup, name it app-gudliving and create respective files and folder in it like defaults to strore the default variables required and roles to define the roles for the ansible code
+Second application is the React.js and Python FastAPI pushed at https://github.com/pardeepgoel83/my_ledger_app having two folders like server and web which would be deployed using the Dockerfile saved in those directories, name it app-ledger and create respective files and folder in it like defaults to strore the default variables required and roles to define the roles for the ansible code
+
+
+Write an Ansible playbook (notebook style) to host multiple applications on a VPN server.
+
+Requirements:
+1. Set up code for two applications:
+   - **app-gudliving**: A WordPress setup. Create a directory structure for this application, including:
+     - `defaults/` to store default variables
+     - `roles/` to define Ansible roles for installation and configuration
+   - **app-ledger**: A React.js and Python FastAPI application from [https://github.com/pardeepgoel83/my_ledger_app](https://github.com/pardeepgoel83/my_ledger_app), which contains `server` (FastAPI) and `web` (React.js) folders, each with its own Dockerfile. Create a directory structure for this application, including:
+     - `defaults/` to store default variables
+     - `roles/` to define Ansible roles for Docker-based deployment of both `server` and `web`
+
+Ensure the playbook is modular, reusable, and follows best practices for Ansible directory structure.
