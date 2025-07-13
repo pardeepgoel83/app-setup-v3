@@ -2,8 +2,8 @@
 # Global variables for all hosts in the inventory
 wordpress_version: "5.8"
 docker_app_version: "latest"
-vpn_user: "vpnuser"
-vpn_password: "securepassword"
+vpn_user: "root"
+vpn_password: "Meeshu@12345"
 db_name: "wordpress_db"
 db_user: "wp_user"
 db_password: "wp_password"
