@@ -61,11 +61,8 @@
     mode: '0755'
   become: true
 
-- name: Remove existing gudliving_blog directory (if any)
-  file:
-    path: /var/www/html/gudliving_blog
-    state: absent
-    recurse: yes
+- name: Force remove gudliving_blog directory (if any)
+  command: rm -rf /var/www/html/gudliving_blog
   become: true
 
 - name: Mark gudliving_blog directory as safe for Git (pre-clone)
