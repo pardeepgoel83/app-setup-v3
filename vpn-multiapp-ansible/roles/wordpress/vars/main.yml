@@ -10,3 +10,6 @@ admin_user: "admin"
 admin_password: "admin_secure_password"
 url: "http://gudliving.example.com"
 php_version: "7.4"
+wordpress_db_name: gudliving_db
+wordpress_db_user: gudliving_user
+wordpress_db_password: Meeshu@12345
