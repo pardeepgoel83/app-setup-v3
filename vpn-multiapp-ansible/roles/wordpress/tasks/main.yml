@@ -32,8 +32,8 @@
   mysql_db:
     name: "{{ wordpress_db_name }}"
     state: present
-    login_user: "{{ mysql_root_user }}"
-    login_password: "{{ mysql_root_password }}"
+    login_user: "root"
+    login_password: "Truth@12345"
 
 - name: Create WordPress database user
   mysql_user:
