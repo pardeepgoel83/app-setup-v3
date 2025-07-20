@@ -43,10 +43,18 @@
     priv: "{{ wordpress_db_name }}.*:ALL"
     state: present
 
+- name: Ensure gudliving_blog directory ownership matches Ansible user
+  file:
+    path: /var/www/html/gudliving_blog
+    owner: "{{ ansible_user | default('www-data') }}"
+    group: "{{ ansible_user | default('www-data') }}"
+    state: directory
+    recurse: yes
+
 - name: Mark gudliving_blog directory as safe for Git
   command: git config --global --add safe.directory /var/www/html/gudliving_blog
   become: true
-  become_user: root
+  become_user: "{{ ansible_user | default('www-data') }}"
 
 - name: Clone gudliving_blog repository
   git:
