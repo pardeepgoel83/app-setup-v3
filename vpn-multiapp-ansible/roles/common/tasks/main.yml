@@ -23,6 +23,12 @@
 #     name: ansible
 #     state: latest
 
+- name: Install PyMySQL for Ansible MySQL modules
+  apt:
+    name: python3-pymysql
+    state: present
+    update_cache: yes
+
 - name: Clean up unused packages
   apt:
     autoremove: yes
