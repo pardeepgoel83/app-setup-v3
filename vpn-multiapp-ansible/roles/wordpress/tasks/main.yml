@@ -43,6 +43,15 @@
     priv: "{{ wordpress_db_name }}.*:ALL"
     state: present
 
+- name: Ensure www-data home directory exists
+  file:
+    path: /var/www
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: true
+
 - name: Remove existing gudliving_blog directory (if any)
   file:
     path: /var/www/html/gudliving_blog
@@ -62,6 +71,8 @@
   command: git config --global --add safe.directory /var/www/html/gudliving_blog
   become: true
   become_user: www-data
+  environment:
+    HOME: /var/www
 
 - name: Clone gudliving_blog repository
   git:
@@ -70,6 +81,8 @@
     version: main
   become: true
   become_user: www-data
+  environment:
+    HOME: /var/www
 
 - name: Set ownership of WordPress files
   file:
