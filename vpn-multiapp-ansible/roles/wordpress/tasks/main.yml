@@ -10,6 +10,12 @@
     state: latest
     update_cache: true
 
+- name: Install PyMySQL for Ansible MySQL modules
+  apt:
+    name: python3-pymysql
+    state: present
+    update_cache: yes
+
 - name: Start and enable Apache service
   service:
     name: apache2
