@@ -11,6 +11,8 @@
     wordpress_admin_user: admin
     wordpress_admin_password: admin_password
     wordpress_admin_email: admin@gudliving.com
+    mysql_root_user: "root"
+    mysql_root_password: "Truth@12345"
   roles:
     - common
     # - vpn
