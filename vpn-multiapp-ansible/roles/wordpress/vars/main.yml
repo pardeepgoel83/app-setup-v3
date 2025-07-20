@@ -1,8 +1,8 @@
-created_username: wp_user
-db_name: gudliving_db
-db_user: wp_user
-db_password: secure_password
-db_host: localhost
+created_username: "wp_user"
+db_name: "gudliving_db"
+db_user: "wp_user"
+db_password: "secure_password"
+db_host: "localhost"
 wordpress_version: "5.8"
 site_title: "Gud Living"
 admin_email: "admin@gudliving.com"
@@ -10,6 +10,6 @@ admin_user: "admin"
 admin_password: "admin_secure_password"
 url: "http://gudliving.example.com"
 php_version: "7.4"
-wordpress_db_name: gudliving_db
-wordpress_db_user: gudliving_user
-wordpress_db_password: Meeshu@12345
+wordpress_db_name: "gudliving_db"
+wordpress_db_user: "gudliving_user"
+wordpress_db_password: "Meeshu@12345"
