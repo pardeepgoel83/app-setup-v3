@@ -43,6 +43,12 @@
     priv: "{{ wordpress_db_name }}.*:ALL"
     state: present
 
+- name: Remove existing gudliving_blog directory (if any)
+  file:
+    path: /var/www/html/gudliving_blog
+    state: absent
+  become: true
+
 - name: Ensure gudliving_blog directory ownership matches Ansible user
   file:
     path: /var/www/html/gudliving_blog
