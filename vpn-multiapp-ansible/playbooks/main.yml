@@ -1,6 +1,15 @@
 ---
 - hosts: vpn_server
   become: true
+  vars:
+    wordpress_db_name: gudliving_db
+    wordpress_db_user: gudliving_user
+    wordpress_db_password: secure_password
+    wordpress_db_host: localhost
+    wordpress_version: latest
+    wordpress_admin_user: admin
+    wordpress_admin_password: admin_password
+    wordpress_admin_email: admin@gudliving.com
   roles:
     - common
     # - vpn
