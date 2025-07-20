@@ -63,7 +63,7 @@
 
 - name: Force remove gudliving_blog directory (if any)
   command: rm -rf /var/www/html/gudliving_blog
-  become: true
+  # become: true
 
 - name: Mark gudliving_blog directory as safe for Git (pre-clone)
   command: git config --global --add safe.directory /var/www/html/gudliving_blog
