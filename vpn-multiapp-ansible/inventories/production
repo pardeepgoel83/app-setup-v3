@@ -1,4 +1,4 @@
 [production]
-vpn_server ansible_host=157.173.220.220
-app_gudliving ansible_host=157.173.220.220
-app_ledger ansible_host=157.173.220.220
+vpn_server ansible_host=157.173.220.220  ansible_python_interpreter=/usr/bin/python3
+app_gudliving ansible_host=157.173.220.220  ansible_python_interpreter=/usr/bin/python3
+app_ledger ansible_host=157.173.220.220  ansible_python_interpreter=/usr/bin/python3
