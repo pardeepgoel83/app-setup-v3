@@ -31,9 +31,9 @@
 - name: Create WordPress database
   mysql_db:
     name: "{{ wordpress_db_name }}"
-    state: present
     login_user: "root"
     login_password: "Truth@12345"
+    state: present
 
 - name: Create WordPress database user
   mysql_user:
@@ -51,7 +51,7 @@
 
 - name: Set ownership of WordPress files
   file:
-    path: /var/www/html/gudliving_blog
+    path: /var/www/html/gudliving_blog/wordpress
     owner: www-data
     group: www-data
     state: directory
@@ -60,7 +60,7 @@
 - name: Configure WordPress
   template:
     src: wp-config.php.j2
-    dest: /var/www/html/gudliving_blog/wp-config.php
+    dest: /var/www/html/gudliving_blog/wordpress/wp-config.php
 
 - name: Enable Apache rewrite module
   command: a2enmod rewrite
