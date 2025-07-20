@@ -43,6 +43,11 @@
     priv: "{{ wordpress_db_name }}.*:ALL"
     state: present
 
+- name: Mark gudliving_blog directory as safe for Git
+  command: git config --global --add safe.directory /var/www/html/gudliving_blog
+  become: true
+  become_user: root
+
 - name: Clone gudliving_blog repository
   git:
     repo: "https://github.com/pardeepgoel83/gudliving_blog.git"
