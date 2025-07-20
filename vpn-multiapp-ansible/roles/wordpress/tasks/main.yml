@@ -105,3 +105,12 @@
     name: apache2
     state: restarted
   when: ansible_service_mgr == 'systemd'
+
+- name: Ensure /var/www/html is owned by www-data
+  file:
+    path: /var/www/html
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: true
